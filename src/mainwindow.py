@@ -1,3 +1,16 @@
+"""
+=================================================================================
+Projeto: Leitor de NF-e XML
+Arquivo: mainwindow.py
+Descrição: Script to read and extract information from electronic invoices (NF-e)
+Autor: Welliton Lima
+Data de Criação: 01/03/2025
+Última Modificação: 02/03/2025
+Versão: 1.0
+Licença: MIT License
+=================================================================================
+"""
+
 import tkinter as tk
 from tkinter import messagebox
 from get_path import path
@@ -11,26 +24,25 @@ msg = ""
 
 def open_popup():
     def set_value(value):
-        response.set(value)  # Define o valor selecionado
-        popup.destroy()      # Fecha o pop-up
+        response.set(value)  # Sets the selected value
+        popup.destroy()      # Close the pop-up
 
     popup = tk.Toplevel()
     popup.title("Escolha uma opção")
-    #popup.geometry("250x150")
 
-    response = tk.StringVar()  # Variável para armazenar o retorno
+    response = tk.StringVar()  # Variable to store the return
 
-    center_window(popup,250,150)
+    center_window(popup,250,150) # to position the window in the center of the screen
 
     tk.Label(popup, text="Files added?",font=("Arial", 12)).pack(pady=10)
     tk.Button(popup, text="YES", command=lambda: set_value(True),width=15, height=2).pack()
     tk.Button(popup, text="NO", command=lambda: set_value(False),width=15, height=2).pack()
 
-    popup.transient(mainwindow)  # Faz a janela ficar sobre a principal
-    popup.grab_set()         # Bloqueia a interação com a principal
-    mainwindow.wait_window(popup)  # Aguarda o pop-up ser fechado
+    popup.transient(mainwindow)    # Makes the window stay on top of the main one
+    popup.grab_set()               # Blocks interaction with the main
+    mainwindow.wait_window(popup)  # Wait for the pop-up to close
 
-    return response.get()  # Retorna o valor escolhido
+    return response.get()  # Returns the chosen value
 
 def start():
     path_input, path_data, msg_input = path()
@@ -47,16 +59,17 @@ def start():
     else:
         label_msg.config(text="Insert files into input directory: ",font=("Arial", 12))
 
+
 def center_window(window,width,height):
-     # Obtém o tamanho da tela
+     # Gets the screen size
     width_screen = window.winfo_screenwidth()
     height_screen = window.winfo_screenheight()
 
-    # Calcula a posição x e y para centralizar
+    # Calculates x and y position to center
     pos_x = (width_screen // 2) - (width // 2)
     pos_y = (height_screen // 2) - (height // 2)
 
-    # Define a geometria centralizada
+    # Defines centered geometry
     window.geometry(f"{width}x{height}+{pos_x}+{pos_y}")
 
 # -------| END Function |-------
@@ -65,7 +78,6 @@ def center_window(window,width,height):
 
 mainwindow = tk.Tk()
 mainwindow.title("NF-e Read")
-#mainwindow.geometry("300x150")
 
 center_window(mainwindow,325,200)
 
@@ -76,7 +88,6 @@ button = tk.Button(mainwindow,text="START",command=start,width=15, height=2).pac
 
 label_msg = tk.Label(mainwindow, text="",font=("Arial", 10))
 label_msg.pack()
-
 
 mainwindow.mainloop()
 

@@ -3,6 +3,8 @@ import pandas as pd
 from info_nfs import get_info_nfs
 from move_files import move_allfiles
 
+# Function that obtains files from the input folder and performs the reading to obtain the data and saves it in an XLSX file.
+
 def nfe_reader(path_input,path_data, label):
     # -------|    Variable declaration   |-------
     msg_alert  = ""
@@ -13,7 +15,7 @@ def nfe_reader(path_input,path_data, label):
     # -------| END Variable declaration |-------
 
     label.config(text="START PROCESS!")
-    list_nfs = os.listdir(path_input)
+    list_nfs = os.listdir(path_input) # Get the files contained in the directory
 
     if (list_nfs != []):
 
@@ -21,7 +23,7 @@ def nfe_reader(path_input,path_data, label):
         rows = []
 
         for nfs_name in list_nfs:
-            if(".xml" == os.path.splitext(nfs_name)[1]):
+            if(".xml" == os.path.splitext(nfs_name)[1]): # Checks if files have the correct extension
 
                 move_okay, e = get_info_nfs(nfs_name,rows) 
 
@@ -32,6 +34,7 @@ def nfe_reader(path_input,path_data, label):
             else:
                 msg_alert += ", " + nfs_name
 
+        # Checks to create a message informing the user
         if(rows != []):
             table = pd.DataFrame(columns=cols,data=rows)
             table.to_excel("./output/NotasFiscais.xlsx",index=False)

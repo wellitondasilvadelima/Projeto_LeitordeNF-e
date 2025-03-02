@@ -1,5 +1,6 @@
 import os
 
+# Function to check or create the necessary directories
 def path():
     # -------|  Variable declaration |-------
     path_input   =  './input'

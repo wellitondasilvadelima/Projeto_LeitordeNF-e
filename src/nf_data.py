@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+# creates a dataclass structure to store the values
 @dataclass
 class data:
       number          : str

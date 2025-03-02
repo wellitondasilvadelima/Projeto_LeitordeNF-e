@@ -1,6 +1,7 @@
 import xmltodict
 from nf_data import data
 
+# Opens the XML file and reads the relevant data
 def get_info_nfs(nfs_name,list_value):
     okay = False
     msg_error = ""
@@ -41,6 +42,7 @@ def get_info_nfs(nfs_name,list_value):
             data.customer_adress = nf_info["dest"]["enderDest"]["xLgr"]+"-"+ nf_info["dest"]["enderDest"]["nro"]+","+nf_info["dest"]["enderDest"]["xMun"]+"-"+nf_info["dest"]["enderDest"]["UF"]+","+nf_info["dest"]["enderDest"]["xPais"]
             data.total           = nf_info["total"]["ICMSTot"]["vNF"]
 
+            # Creates a list with the obtained values
             list_value.append([ data.number, 
                                 data.cnpj,
                                 data.company, 
