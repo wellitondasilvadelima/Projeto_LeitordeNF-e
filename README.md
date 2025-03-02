@@ -1,7 +1,7 @@
 # Leitor de NF-e em XML
 
 ## Descrição
-O **Leitor de NF-e em XML** é um projeto desenvolvido em Python para automatizar a extração de informações de Notas Fiscais Eletrônicas (**NF-e**) no formato **XML**. O sistema permite a leitura dos arquivos.
+O **Leitor de NF-e em XML** é um projeto desenvolvido em Python para automatizar a extração de informações de Notas Fiscais Eletrônicas (**NF-e**) no formato **XML**. O sistema permite a leitura dos arquivos, extração de dados em xlsx. 
 
 ## Funcionalidades
 -  **Leitura de arquivos XML** de NF-e.
