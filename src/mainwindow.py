@@ -1,13 +1,13 @@
 """
 =================================================================================
-Projeto: Leitor de NF-e XML
-Arquivo: mainwindow.py
-Descrição: Script to read and extract information from electronic invoices (NF-e)
-Autor: Welliton Lima
-Data de Criação: 01/03/2025
-Última Modificação: 02/03/2025
-Versão: 1.0
-Licença: MIT License
+Project: NF-e XML Reader
+File: mainwindow.py
+Description: Script to read and extract information from electronic invoices (NF-e)
+Author: Welliton Lima
+Creation Date: 01/03/2025
+Last Modified: 03/03/2025
+Version: 1.0
+License: MIT License
 =================================================================================
 """
 
