@@ -1,11 +1,12 @@
 import os
+import time
 import pandas as pd
 from info_nfs import get_info_nfs
 from move_files import move_allfiles
 
 # Function that obtains files from the input folder and performs the reading to obtain the data and saves it in an XLSX file.
 
-def nfe_reader(path_input,path_data, label):
+def nfe_reader(path_input, path_data, label, progress, mainwindow):
     # -------|    Variable declaration   |-------
     msg_alert  = ""
     msg_output = ""
@@ -14,14 +15,15 @@ def nfe_reader(path_input,path_data, label):
     move_okay  = False
     # -------| END Variable declaration |-------
 
-    label.config(text="START PROCESS!")
+    label.configure(text="START PROCESS!",text_color="white")
     list_nfs = os.listdir(path_input) # Get the files contained in the directory
-
+    progress.set(0)
     if (list_nfs != []):
 
         cols = ["Document number","Issuing company","CNPJ","Customer name","Adress","Product name","Quantity","Gross weight","Total","Total tributável"]
         rows = []
-
+        tam = len(list_nfs)
+        i = 1
         for nfs_name in list_nfs:
             if(".xml" == os.path.splitext(nfs_name)[1]): # Checks if files have the correct extension
 
@@ -29,10 +31,14 @@ def nfe_reader(path_input,path_data, label):
 
                 if (move_okay == True):
                     move_allfiles(path_input,path_data, nfs_name)
+                    progress.set(i / tam)
+                    mainwindow.update()  # Atualiza a interface
+                    time.sleep(0.05)  # Pausa para simular o progresso
                 else:
                     msg_error += "\n" + e
             else:
                 msg_alert += ", " + nfs_name
+            i=i+1
 
         # Checks to create a message informing the user
         if(rows != []):
